@@ -13,6 +13,7 @@ namespace MarsRoverService.Tests
         public void Setup()
         {
             Plateau plateau = new Plateau(5, 5);
+            MissionControl missionControl = new MissionControl(plateau);
         }
       
 
@@ -39,22 +40,41 @@ namespace MarsRoverService.Tests
         [TestMethod]
         public void TestAddTwoRoversToTheSameSquare()
         {
-            Plateau plateau = new Plateau(5, 5);
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
             var rover1 = new Rover("4 4 W");
             var rover2 = new Rover("4 4 S");
-            plateau.AddRover(rover1);
-            Action act = () => plateau.AddRover(rover2);
-            act.Should().Throw<Exception>().WithMessage(("The square is not empty"));
+            mc.AddRover(rover1);
+            Action act = () => mc.AddRover(rover2);
+            act.Should().Throw<Exception>().WithMessage("The square is not empty");
+        }
+        [TestMethod]
+        public void TestAddRoverToTheSquareOutsideThePlateau()
+        {
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover1 = new Rover("10 10 W");
+            Action act = () => mc.AddRover(rover1);
+            act.Should().Throw<Exception>().WithMessage("The square is outside the plateau");
         }
         [TestMethod]
         public void TestAddTwoRoversToTheDifferentSquares()
         {
-            Plateau plateau = new Plateau(5, 5);
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
             var rover1 = new Rover("4 4 W");
             var rover2 = new Rover("5 5 S");
-            plateau.AddRover(rover1);
-            Action act = () => plateau.AddRover(rover2);
+            mc.AddRover(rover1);
+            Action act = () => mc.AddRover(rover2);
             act.Should().NotThrow();
+        }
+        [TestCase("4 4 W", "3 4 W")]
+        [TestCase("3 3 S", "3 4 S")]
+        [TestCase("3 4 E", "4 4 E")]
+        [TestCase("1 1 N", "1 0 N")]
+        public void TestMoveRoverForward(string initial, string result)
+        {
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover = new Rover(initial);
+            mc.MoveRoverForward(rover);
+            rover.GetCurrentPosition().Should().Be(result);
         }
 
     }

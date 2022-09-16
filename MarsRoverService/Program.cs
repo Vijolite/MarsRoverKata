@@ -7,6 +7,7 @@
             string input = Console.ReadLine();
             var size = input.Split().Select(x=>Convert.ToInt32(x)).ToArray();
             var plateau = new Plateau(size[0], size[1]);
+            var mc = new MissionControl(plateau);
             //var r = new Rover("0 0 N");
             //r.PrintCurrentPosition();
             //Console.WriteLine(r.Direction);
@@ -14,8 +15,8 @@
             //r.SpinLeft();
             //r.Direction = 'Q';
             //r.PrintCurrentPosition();
-            plateau.AddRover(new Rover("0 0 N"));
-            plateau.PrintAllRoverPositions();
+            mc.AddRover(new Rover("0 0 N"));
+            mc.PrintAllRoverPositions();
 
         }
 

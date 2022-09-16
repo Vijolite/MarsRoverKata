@@ -42,5 +42,10 @@ namespace MarsRoverService
             else if (Direction.Equals('E')) Direction = 'S';
 
         }
+        public void Move(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
     }
 }
