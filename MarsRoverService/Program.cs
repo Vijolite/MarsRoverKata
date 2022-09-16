@@ -14,8 +14,8 @@
             //r.SpinLeft();
             //r.Direction = 'Q';
             //r.PrintCurrentPosition();
-            //plateau.AddRover(new Rover("0 0 N"));
-            //plateau.PrintAllRoverPositions();
+            plateau.AddRover(new Rover("0 0 N"));
+            plateau.PrintAllRoverPositions();
 
         }
 
