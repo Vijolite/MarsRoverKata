@@ -73,7 +73,28 @@ namespace MarsRoverService.Tests
         {
             MissionControl mc = new MissionControl(new Plateau(5, 5));
             var rover = new Rover(initial);
+            mc.AddRover(rover);
             mc.MoveRoverForward(rover);
+            rover.GetCurrentPosition().Should().Be(result);
+        }
+        [TestMethod]
+        public void TestMoveRoverForwardToNotEmptySquare()
+        {
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover1 = new Rover("4 4 W");
+            var rover2 = new Rover("3 4 S");
+            mc.AddRover(rover1);
+            mc.AddRover(rover2);
+            Action act = () => mc.MoveRoverForward(rover1);
+            act.Should().Throw<Exception>().WithMessage("Wrong square to move: outside the plateau or not empty");
+        }
+        [TestCase("1 2 N", "LMLMLMLMM", "1 3 N")]
+        public void TestOneRoverMakingJurney(string initial, string journey, string result)
+        {
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover = new Rover(initial);
+            mc.AddRover(rover);
+            mc.MakeRoverToMakeJourney(rover, journey);
             rover.GetCurrentPosition().Should().Be(result);
         }
 

@@ -15,8 +15,20 @@
             //r.SpinLeft();
             //r.Direction = 'Q';
             //r.PrintCurrentPosition();
-            mc.AddRover(new Rover("0 0 N"));
+            //mc.AddRover(new Rover("0 0 N"));
+            //mc.PrintAllRoverPositions();
+
+            //MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover1 = new Rover("1 2 N");
+            //var rover2 = new Rover("3 4 S");
+            mc.AddRover(rover1);
+            //mc.AddRover(rover2);
+            //rover1.PrintCurrentPosition();
+            //rover2.PrintCurrentPosition();
+            mc.MakeRoverToMakeJourney(rover1, "LMLMLMLMM");
             mc.PrintAllRoverPositions();
+            //mc.MoveRoverForward(rover1);
+            //mc.PrintAllRoverPositions();
 
         }
 

@@ -49,5 +49,14 @@ namespace MarsRoverService
             if (IsValidSquare(x, y) && IsEmptySquare(x, y)) rover.Move(x, y);
             else throw new Exception("Wrong square to move: outside the plateau or not empty");
         }
+        public void MakeRoverToMakeJourney(Rover rover, string journey)
+        {
+            foreach (char command in journey)
+            {
+                if (command == 'L') rover.SpinLeft();
+                if (command == 'R') rover.SpinRight();
+                if (command == 'M') MoveRoverForward(rover);
+            }
+        }
     }
 }
