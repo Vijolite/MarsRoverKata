@@ -66,9 +66,9 @@ namespace MarsRoverService.Tests
             act.Should().NotThrow();
         }
         [TestCase("4 4 W", "3 4 W")]
-        [TestCase("3 3 S", "3 4 S")]
+        [TestCase("3 3 S", "3 2 S")]
         [TestCase("3 4 E", "4 4 E")]
-        [TestCase("1 1 N", "1 0 N")]
+        [TestCase("1 1 N", "1 2 N")]
         public void TestMoveRoverForward(string initial, string result)
         {
             MissionControl mc = new MissionControl(new Plateau(5, 5));
@@ -89,6 +89,7 @@ namespace MarsRoverService.Tests
             act.Should().Throw<Exception>().WithMessage("Wrong square to move: outside the plateau or not empty");
         }
         [TestCase("1 2 N", "LMLMLMLMM", "1 3 N")]
+        [TestCase("3 3 E", "MMRMMRMRRM", "5 1 E")]
         public void TestOneRoverMakingJurney(string initial, string journey, string result)
         {
             MissionControl mc = new MissionControl(new Plateau(5, 5));

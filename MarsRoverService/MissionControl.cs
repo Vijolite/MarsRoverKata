@@ -42,8 +42,8 @@ namespace MarsRoverService
         {
             int x = rover.X;
             int y = rover.Y;
-            if (rover.Direction == 'N') y--;
-            if (rover.Direction == 'S') y++;
+            if (rover.Direction == 'N') y++;
+            if (rover.Direction == 'S') y--;
             if (rover.Direction == 'W') x--;
             if (rover.Direction == 'E') x++;
             if (IsValidSquare(x, y) && IsEmptySquare(x, y)) rover.Move(x, y);
