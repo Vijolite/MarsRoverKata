@@ -98,6 +98,30 @@ namespace MarsRoverService.Tests
             mc.MakeRoverToMakeJourney(rover, journey);
             rover.GetCurrentPosition().Should().Be(result);
         }
+        [TestMethod]
+        public void TestTwoRoversNotCrossing()
+        {
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover1 = new Rover("1 2 N");
+            var rover2 = new Rover("3 3 E");
+            mc.AddRover(rover1);
+            mc.AddRover(rover2);
+            mc.MakeRoverToMakeJourney(rover1, "LMLMLMLMM");
+            mc.MakeRoverToMakeJourney(rover2, "MMRMMRMRRM");
+            (rover1.GetCurrentPosition()+" "+ rover2.GetCurrentPosition()).Should().Be("1 3 N"+" "+ "5 1 E");
+        }
+        [TestMethod]
+        public void TestTwoRoversCrossing()
+        {
+            MissionControl mc = new MissionControl(new Plateau(5, 5));
+            var rover1 = new Rover("1 2 N");
+            var rover2 = new Rover("3 3 W");
+            mc.AddRover(rover1);
+            mc.AddRover(rover2);
+            mc.MakeRoverToMakeJourney(rover1, "LMLMLMLMM");
+            Action act = () => mc.MakeRoverToMakeJourney(rover2, "MMRMMRMRRM");
+            act.Should().Throw<Exception>().WithMessage("Wrong square to move: outside the plateau or not empty");
+        }
 
     }
 }
