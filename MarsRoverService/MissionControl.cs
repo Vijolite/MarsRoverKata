@@ -21,6 +21,7 @@ namespace MarsRoverService
         }
         public void PrintAllRoverPositions()
         {
+            Console.WriteLine("Rovers' final positions:");
             foreach (Rover rover in Rovers)
             {
                 rover.PrintCurrentPosition();

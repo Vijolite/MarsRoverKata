@@ -17,6 +17,10 @@ namespace MarsRoverService
             Width = width;
             Rovers = new List<Rover>();
         }
+        public int Size()
+        {
+            return (Length+1)*(Width+1);
+        }
         public void AddRover (Rover rover)
         {
             if (IsEmptySquare(rover.X, rover.Y)) Rovers.Add(rover);
