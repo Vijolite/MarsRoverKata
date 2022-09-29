@@ -7,25 +7,17 @@ namespace MarsRoverService
     public class MissionControl
     {
         public Plateau Plateau { get; set; }
-        public List <Rover> Rovers { get; set; }
+        public List <Vehicle> Rovers { get; set; }
         public MissionControl (Plateau plateau)
         {
             Plateau = plateau;
-            Rovers = new List<Rover>();
+            Rovers = new List<Vehicle>();
         }
         public void AddRover (Rover rover)
         {
             if (!IsValidSquare(rover.X, rover.Y)) throw new Exception("The square is outside the plateau");
             else if (!IsEmptySquare(rover.X, rover.Y)) throw new Exception("The square is not empty");
             else Rovers.Add(rover);
-        }
-        public void PrintAllRoverPositions()
-        {
-            Console.WriteLine("Rovers' final positions:");
-            foreach (Rover rover in Rovers)
-            {
-                rover.PrintCurrentPosition();
-            }
         }
         private bool IsEmptySquare(int x, int y)
         {

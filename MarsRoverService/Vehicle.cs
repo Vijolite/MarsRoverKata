@@ -22,10 +22,6 @@ namespace MarsRoverService
         {
             return ($"{X} {Y} {Direction}");
         }
-        public void PrintCurrentPosition ()
-        {
-            Console.WriteLine(this.GetCurrentPosition());
-        }
         public void SpinLeft()
         {
             if (Direction.Equals('N')) Direction = 'W';

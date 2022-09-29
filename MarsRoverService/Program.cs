@@ -17,7 +17,7 @@ namespace MarsRoverService
                 var instructions = UserInterface.InputRoverInstructions();
                 mc.MakeRoverToMakeJourney(rover, instructions);
             }
-            mc.PrintAllRoverPositions();
+            Output.PrintAllRoverPositions(mc.Rovers);
         }
     }
 }

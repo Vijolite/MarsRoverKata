@@ -26,13 +26,6 @@ namespace MarsRoverService
             if (IsEmptySquare(rover.X, rover.Y)) Rovers.Add(rover);
             else throw new Exception("The square is not empty");
         }
-        public void PrintAllRoverPositions()
-        {
-            foreach (Rover rover in Rovers)
-            {
-                rover.PrintCurrentPosition();
-            }
-        }
         public bool IsEmptySquare(int x, int y)
         {
             foreach (Rover rover in Rovers)
