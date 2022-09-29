@@ -27,7 +27,7 @@ namespace MarsRoverService
                 rover.PrintCurrentPosition();
             }
         }
-        public bool IsEmptySquare(int x, int y)
+        private bool IsEmptySquare(int x, int y)
         {
             foreach (Rover rover in Rovers)
             {
@@ -35,7 +35,7 @@ namespace MarsRoverService
             }
             return true;
         }
-        public bool IsValidSquare(int x, int y)
+        private bool IsValidSquare(int x, int y)
         {
             return x>=0 && x<=Plateau.Length && y>=0 && y<=Plateau.Width;
         }
